@@ -15,6 +15,10 @@ use App\User;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/users', function(){
-    return response()->json(User::all());
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/users/{user:email}', function(App\User $user){
+        return $user;
+    });
+    Route::get('/users/{user:email}/boards', 'API\BoardController@index');
+    Route::apiResource('boards', 'BoardController');
 });
