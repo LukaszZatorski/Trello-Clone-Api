@@ -20,5 +20,5 @@ Route::middleware('auth:sanctum')->group(function () {
         return $user;
     });
     Route::get('/users/{user:email}/boards', 'API\BoardController@index');
-    Route::apiResource('boards', 'BoardController');
+    Route::post('/boards', 'API\BoardController@store');
 });

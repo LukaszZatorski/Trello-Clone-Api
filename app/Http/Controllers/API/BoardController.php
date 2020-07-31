@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use App\Board;
 
 class BoardController extends Controller
 {
@@ -13,15 +14,20 @@ class BoardController extends Controller
         return $user->boards;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'email' => 'required',
+            'title' => 'required|max:100'
+        ]);
+
+        $board = Board::create([
+            'user_id' => User::where('email', $attributes['email'])->first()->id,
+            'title' => $attributes['title'],
+        ]);
+
+        return $board;
     }
 
     /**
