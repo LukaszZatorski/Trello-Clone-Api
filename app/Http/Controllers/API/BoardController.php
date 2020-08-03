@@ -19,12 +19,14 @@ class BoardController extends Controller
     {
         $attributes = $request->validate([
             'email' => 'required',
-            'title' => 'required|max:100'
+            'title' => 'required|max:100',
+            'color' => 'required'
         ]);
 
         $board = Board::create([
             'user_id' => User::where('email', $attributes['email'])->first()->id,
             'title' => $attributes['title'],
+            'color' => $attributes['color'],
         ]);
 
         return $board;

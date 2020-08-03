@@ -16,6 +16,7 @@ class CreateBoardsTable extends Migration
         Schema::create('boards', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('color');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
