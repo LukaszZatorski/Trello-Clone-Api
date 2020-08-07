@@ -23,4 +23,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/boards/{board}', 'API\BoardController@show');
     Route::post('/boards', 'API\BoardController@store');
     Route::delete('/boards/{board}', 'API\BoardController@destroy');
+    Route::patch('/boards/{board}', 'API\BoardController@update');
 });

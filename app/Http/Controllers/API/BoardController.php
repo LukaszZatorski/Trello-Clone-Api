@@ -37,16 +37,16 @@ class BoardController extends Controller
         return $board;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, Board $board)
     {
-        //
+        $attributes = $request->validate([
+            'title' => 'required|max:100',
+            'color' => 'required'
+        ]);
+
+        $board->update($attributes);
+
+        return $board;
     }
 
     public function destroy(Board $board)
