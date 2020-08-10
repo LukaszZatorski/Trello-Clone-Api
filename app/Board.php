@@ -13,4 +13,9 @@ class Board extends Model
     public function user() {
         return $this->belongsTo('App\User');
     }
+
+    public function taskLists()
+    {
+        return $this->hasMany('App\TaskList');
+    }
 }

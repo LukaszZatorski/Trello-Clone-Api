@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Board;
+use App\TaskList;
 
 class BoardController extends Controller
 {
@@ -34,6 +35,8 @@ class BoardController extends Controller
 
     public function show(Board $board)
     {
+        
+        $board = ['board' => $board, 'boardTaskList' => $board->taskLists];
         return $board;
     }
 
