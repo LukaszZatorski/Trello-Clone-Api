@@ -24,4 +24,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/boards', 'API\BoardController@store');
     Route::delete('/boards/{board}', 'API\BoardController@destroy');
     Route::patch('/boards/{board}', 'API\BoardController@update');
+
+    Route::post('/task-lists', 'API\TaskListController@store');
 });

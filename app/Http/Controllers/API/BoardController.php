@@ -35,9 +35,7 @@ class BoardController extends Controller
 
     public function show(Board $board)
     {
-        
-        $board = ['board' => $board, 'boardTaskList' => $board->taskLists];
-        return $board;
+        return $board->load('taskLists');
     }
 
     public function update(Request $request, Board $board)
