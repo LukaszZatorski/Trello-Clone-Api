@@ -9,16 +9,6 @@ use App\TaskList;
 
 class TaskListController extends Controller
 {
-    
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
 
     public function store(Request $request)
     {
@@ -35,23 +25,19 @@ class TaskListController extends Controller
         return $taskList;
     }
 
-    public function show($id)
+    public function update(Request $request, TaskList $taskList)
     {
-        //
+        $attributes = $request->validate([
+            'title' => 'required|max:100'
+        ]);
+
+        $taskList->update($attributes);
+
+        return $taskList;
     }
 
-    public function edit($id)
+    public function destroy(TaskList $taskList)
     {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+        $taskList->delete();
     }
 }
