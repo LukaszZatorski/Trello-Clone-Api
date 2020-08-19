@@ -35,7 +35,7 @@ class BoardController extends Controller
 
     public function show(Board $board)
     {
-        return $board->load('taskLists');
+        return $board->load('taskLists.tasks');
     }
 
     public function update(Request $request, Board $board)

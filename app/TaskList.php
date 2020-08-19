@@ -13,4 +13,9 @@ class TaskList extends Model
     public function board() {
         return $this->belongsTo('App\Board');
     }
+
+    public function tasks()
+    {
+        return $this->hasMany('App\Task');
+    }
 }
