@@ -28,4 +28,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/task-lists', 'API\TaskListController@store');
     Route::delete('/task-lists/{taskList}', 'API\TaskListController@destroy');
     Route::patch('/task-lists/{taskList}', 'API\TaskListController@update');
+
+    Route::post('/tasks', 'API\TaskController@store');
 });
