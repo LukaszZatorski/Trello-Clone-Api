@@ -14,7 +14,7 @@ class TaskController extends Controller
     {
         $attributes = $request->validate([
             'taskListId' => 'required',
-            'description' => 'required|max:100',
+            'description' => 'required',
         ]);
 
         $task = Task::create([
@@ -30,13 +30,19 @@ class TaskController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Task $task)
     {
-        //
+        $attributes = $request->validate([
+            'description' => 'required'
+        ]);
+
+        $task->update($attributes);
+
+        return $task;
     }
 
-    public function destroy($id)
+    public function destroy(Task $task)
     {
-        //
+        $task->delete();
     }
 }

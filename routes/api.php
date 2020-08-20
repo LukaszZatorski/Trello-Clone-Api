@@ -30,4 +30,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/task-lists/{taskList}', 'API\TaskListController@update');
 
     Route::post('/tasks', 'API\TaskController@store');
+    Route::delete('/tasks/{task}', 'API\TaskController@destroy');
+    Route::patch('/tasks/{task}', 'API\TaskController@update');
 });
