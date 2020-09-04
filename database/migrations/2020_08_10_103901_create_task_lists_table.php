@@ -16,6 +16,7 @@ class CreateTaskListsTable extends Migration
         Schema::create('task_lists', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->text('tasks_order')->nullable($value = true);
             $table->foreignId('board_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

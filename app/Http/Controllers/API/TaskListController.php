@@ -20,7 +20,10 @@ class TaskListController extends Controller
         $taskList = TaskList::create([
             'board_id' => $attributes['boardId'],
             'title' => $attributes['title'],
+            'tasks_order' => '',
         ]);
+
+        $taskList->board->update(['task_lists_order' => $taskList->board->task_lists_order . ' ' . $taskList->id ]);
 
         return $taskList;
     }
@@ -39,5 +42,7 @@ class TaskListController extends Controller
     public function destroy(TaskList $taskList)
     {
         $taskList->delete();
+
+        $taskList->board->update(['task_lists_order' => str_replace(' ' . $taskList->id, '', $taskList->board->task_lists_order)]);
     }
 }

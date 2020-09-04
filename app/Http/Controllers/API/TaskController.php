@@ -22,12 +22,9 @@ class TaskController extends Controller
             'description' => $attributes['description'],
         ]);
 
-        return $task;
-    }
+        $task->taskList->update(['tasks_order' => $task->taskList->tasks_order . ' ' . $task->id ]);
 
-    public function show($id)
-    {
-        //
+        return $task;
     }
 
     public function update(Request $request, Task $task)
@@ -44,5 +41,18 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
+
+        $task->taskList->update(['tasks_order' => str_replace(' ' . $task->id, '', $task->taskList->tasks_order)]);
+    }
+    
+    public function reorder(Request $request, Task $task)
+    {
+        if ($task->task_list_id == $request->destinationListId){
+            $task->taskList->update(['tasks_order' => $request->destinationListTaskOrder]);
+        } else {
+            $task->taskList->update(['tasks_order' => $request->sourceListTaskOrder]);
+            $task->update(['task_list_id' => $request->destinationListId]);
+            TaskList::where('id', $request->destinationListId)->update(['tasks_order' => $request->destinationListTaskOrder]);
+        }
     }
 }

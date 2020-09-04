@@ -28,6 +28,7 @@ class BoardController extends Controller
             'user_id' => User::where('email', $attributes['email'])->first()->id,
             'title' => $attributes['title'],
             'color' => $attributes['color'],
+            'task_lists_order' => '',
         ]);
 
         return $board;

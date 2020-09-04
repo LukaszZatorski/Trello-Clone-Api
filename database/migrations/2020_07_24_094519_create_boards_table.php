@@ -17,6 +17,7 @@ class CreateBoardsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('color');
+            $table->text('task_lists_order')->nullable($value = true);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
